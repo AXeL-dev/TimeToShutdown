@@ -1,0 +1,79 @@
+/******************************************************************************
+* Projet : TimeToShutdown
+* Fichier : tts.rc
+*
+******************************************************************************/
+
+#include "ressources.h"
+
+
+/******************************************************************************
+* Icone de l'application
+*
+******************************************************************************/
+
+ID_ICON ICON DISCARDABLE "icones/tts.ico"
+
+/******************************************************************************
+* Images de l'application
+*
+******************************************************************************/
+
+ID_ARRETER BITMAP "icones/arreter.bmp"
+ID_REDEMARRER BITMAP "icones/redemarrer.bmp"
+ID_METTRE_EN_VEILLE BITMAP "icones/mettre_en_veille.bmp"
+
+/******************************************************************************
+* Style XP
+*
+******************************************************************************/
+
+1 24 "manifest.xml"
+
+/******************************************************************************
+* Menu Popup
+*
+******************************************************************************/
+
+MY_POPUP MENU DISCARDABLE
+BEGIN
+     POPUP "MY_POPUP"
+     BEGIN
+        MENUITEM "Quitter", MSG_QUITTER
+        MENUITEM SEPARATOR
+        MENUITEM "Etat actuel", MSG_ETAT
+        MENUITEM "Ouvrir la fenetre de configuration", MSG_CONFIGURER
+        MENUITEM "Arrêter maintenant\tShutdown", MSG_ARRETER
+        MENUITEM "Redémarrer maintenant\tReboot", MSG_REDEMARRER
+        MENUITEM "Mettre en veille maintenant\tSleep", MSG_METTRE_EN_VEILLE
+        MENUITEM "Annuler tout", MSG_ANNULER
+        MENUITEM SEPARATOR
+        MENUITEM "A propos", MSG_APROPOS
+     END
+END
+
+/******************************************************************************
+* Fenetre de configuration de l'application
+*
+******************************************************************************/
+
+DIAG_CONFIG DIALOGEX 700, 294, 200, 130
+CAPTION NOM_APP
+FONT 8, "MS Sans Serif", 0, 0
+//STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS /*| DS_CENTER */| WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_SETFOREGROUND
+STYLE 0x10CA0000
+EXSTYLE 0x00000018
+BEGIN
+     /* Group Box (Button) */
+     CONTROL "Système : ", GRP_SYSTEME, "Button", BS_GROUPBOX | WS_CHILD | WS_VISIBLE, 2, 6, 196, 100
+     /* Radio Button */
+     CONTROL "Arrêter", BT_ARRETER, "Button", WS_GROUP | BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE, 30, 30, 35, 9
+     CONTROL "Redémarrer", BT_REDEMARRER, "Button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE, 30, 55, 50, 9
+     CONTROL "Mettre en veille", BT_METTRE_EN_VEILLE, "Button", BS_AUTORADIOBUTTON | WS_CHILD | WS_VISIBLE, 30, 80, 60, 9
+     /* Static et Button */
+     CONTROL "dans : ", ST_TEXT_1, "Static", WS_CHILD | WS_VISIBLE, 94, 55, 30, 9
+     CONTROL "", CB_TIME, "ComboBox", CBS_DROPDOWN | WS_CHILD | WS_VISIBLE, 120, 53, 40, 50
+     CONTROL "minute(s)", ST_TEXT_2, "Static", WS_CHILD | WS_VISIBLE, 164, 55, 28, 9
+     CONTROL "Annuler", BT_ANNULER, "Button", BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE, 6, 111, 90, 15
+     CONTROL "Appliquer", BT_APPLIQUER, "Button", BS_DEFPUSHBUTTON | WS_CHILD | WS_VISIBLE, 104, 111, 90, 15
+END
